@@ -63,3 +63,40 @@ interface Book {
 const printBookDetails = (book : Book) =>{
     console.log(`Title: ${book.title}, Author: ${book.author}, Published: ${book.publishedYear}, Available: ${book.isAvailable ?'Yes':'No'}`)
 }
+
+type Value = string | number;
+const getUniqueValues = (arr1: Value[], arr2: Value[]): Value[] => {
+  const result: Value[] = [];
+
+  const addUnique = (value: Value) => {
+    for (let i = 0; i < result.length; i++) {
+      if (result[i] === value) return;
+    }
+    result.push(value);
+  };
+
+  for (let i = 0; i < arr1.length; i++) addUnique(arr1[i]!);
+  for (let i = 0; i < arr2.length; i++) addUnique(arr2[i]!);
+
+  return result;
+};
+
+type Product = {
+  name: string;
+  price: number;
+  quantity: number;
+  discount?: number; 
+}
+const calculateTotalPrice = (products : Product[])  =>{
+   const totalPrice = products.reduce((acc,product)=>{
+        let Price = product.price * product.quantity;
+
+        if(product.discount !== undefined){
+            Price = Price - (Price*product.discount)/100;
+        }
+        return acc + Price;
+    },0)
+
+    return totalPrice
+
+}
