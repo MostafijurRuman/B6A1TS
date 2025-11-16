@@ -41,3 +41,25 @@ const filterByRating = (items: Item[] ):Item[] =>{
     const filtered = items.filter(item => item.rating >= 4);
     return  filtered;
 }
+
+type User = {
+    id: number,
+    name: string,
+    email: string,
+    isActive: boolean
+}
+const filterActiveUsers = (users : User[]) : User[]=>{
+    const activeUsers = users.filter(user => user.isActive === true)
+    return activeUsers;
+}
+
+interface Book {
+    title : string,
+    author: string,
+    publishedYear:number,
+    isAvailable: boolean
+}
+
+const printBookDetails = (book : Book) =>{
+    console.log(`Title: ${book.title}, Author: ${book.author}, Published: ${book.publishedYear}, Available: ${book.isAvailable ?'Yes':'No'}`)
+}
