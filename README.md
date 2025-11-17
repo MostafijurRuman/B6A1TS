@@ -44,6 +44,8 @@ getValue(person, "email");  // ভুল key => error
 
 
 
+------------------------------------------------------------------------------------------------------------------------------------------------------
+
 
 3. Explain the difference between any, unknown, and never types in TypeScript.
 
