@@ -25,10 +25,14 @@ const getLength = <T>(value: string | T[]): number => {
 };
 
 class Person{
-   constructor( public name:string, public age:number){
+  name: string;
+  age: number;
+   constructor( name: string, age: number){
+    this.name = name;
+    this.age = age;
    }
    getDetails():string{
-   return `Name: ${this.name}, Age: ${this.age}`;
+   return `'Name: ${this.name}, Age: ${this.age}'`;
    }
 }
 
@@ -87,14 +91,17 @@ type Product = {
   quantity: number;
   discount?: number; 
 }
-const calculateTotalPrice = (products : Product[])  =>{
+const calculateTotalPrice = (products : Product[]) :number =>{
+   if(products.length === 0){
+    return 0;
+   }
    const totalPrice = products.reduce((acc,product)=>{
-        let Price = product.price * product.quantity;
+        let price = product.price * product.quantity;
 
         if(product.discount !== undefined){
-            Price = Price - (Price*product.discount)/100;
+            price = price - (price*product.discount)/100;
         }
-        return acc + Price;
+        return acc + price;
     },0)
 
     return totalPrice
