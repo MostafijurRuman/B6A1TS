@@ -69,21 +69,34 @@ const printBookDetails = (book : Book) =>{
 }
 
 type Value = string | number;
-const getUniqueValues = (arr1: Value[], arr2: Value[]): Value[] => {
-  const result: Value[] = [];
 
-  const addUnique = (value: Value) => {
-    for (let i = 0; i < result.length; i++) {
-      if (result[i] === value) return;
+function getUniqueValues(arr1: Value[], arr2: Value[]): Value[] {
+  const result: Value[] = [];
+  let rIndex = 0;
+
+  const isExists = (value: Value): boolean => {
+    for (let i = 0; i < rIndex; i++) {
+      if (result[i] === value) return true;
     }
-    result.push(value);
+    return false;
   };
 
-  for (let i = 0; i < arr1.length; i++) addUnique(arr1[i]!);
-  for (let i = 0; i < arr2.length; i++) addUnique(arr2[i]!);
+  for (let i = 0; i < arr1.length; i++) {
+    if (!isExists(arr1[i])) {
+      result[rIndex] = arr1[i];
+      rIndex++;
+    }
+  }
+
+  for (let i = 0; i < arr2.length; i++) {
+    if (!isExists(arr2[i])) {
+      result[rIndex] = arr2[i];
+      rIndex++;
+    }
+  }
 
   return result;
-};
+}
 
 type Product = {
   name: string;
